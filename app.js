@@ -7,17 +7,18 @@ var bodyParser = require('body-parser');
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var FacebookStrategy = require('passport-facebook');
-var models = require('./models/models');
-
-var routes = require('./routes/routes');
-var auth = require('./routes/auth');
 
 var REQUIRED_ENV = "SECRET MONGODB_URI".split(" ");
 REQUIRED_ENV.forEach(function(el) {
   if (!process.env[el])
-    throw new Error("Missing required env var " + el);
+    console.error("Missing required env var " + el);
+    process.exit(1);
 });
 
+var models = require('./models/models');
+
+var routes = require('./routes/routes');
+var auth = require('./routes/auth');
 var app = express();
 
 // view engine setup
