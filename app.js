@@ -9,16 +9,8 @@ var LocalStrategy = require('passport-local');
 var FacebookStrategy = require('passport-facebook');
 var models = require('./models/models');
 
-var routes = require('./routes/index');
+var routes = require('./routes/routes');
 var auth = require('./routes/auth');
-
-// Make sure we have all required env vars. If these are missing it can lead
-// to confusing, unpredictable errors later.
-var REQUIRED_ENV = "FROM_PHONE TWILIO_ACCOUNT_SID TWILIO_AUTH_TOKEN SECRET FB_CLIENT_ID FB_CLIENT_SECRET callbackURL SENDGRID_API_KEY FROM_EMAIL".split(" ");
-REQUIRED_ENV.forEach(function(el) {
-  if (!process.env[el])
-    throw new Error("Missing required env var " + el);
-});
 
 var app = express();
 
@@ -26,6 +18,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
+// Se
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -68,18 +61,6 @@ passport.use(new LocalStrategy(function(username, password, done) {
       }
       // auth has has succeeded
       return done(null, user);
-    });
-  }
-));
-
-passport.use(new FacebookStrategy({
-    clientID: process.env.FB_CLIENT_ID,
-    clientSecret: process.env.FB_CLIENT_SECRET,
-    callbackURL: process.env.callbackURL
-  },
-  function(accessToken, refreshToken, profile, cb) {
-    models.User.findOrCreate({ facebookId: profile.id }, function (err, user) {
-      return cb(err, user);
     });
   }
 ));
