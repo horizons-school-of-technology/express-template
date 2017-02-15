@@ -11,12 +11,9 @@ var User = models.User;
 
 router.get('/', function(req, res, next) {
 
-
     res.render('home', {
       about: "this is my project!",
-      username: req.user.username
     });
-
 
 });
 
