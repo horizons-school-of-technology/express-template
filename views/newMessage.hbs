@@ -1,0 +1,18 @@
+<h3>New Message to {{contact.name}}</h3>
+<form method="POST">
+  <div class="form-group">
+    <label>Message</label>
+    <textarea name="message" class="form-control"></textarea>
+  </div>
+  <div class="form-group">
+    <label class="radio-inline">
+      <input type="radio" name="channel" value="sms" checked> SMS
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="channel" value="email"> Email
+    </label>
+  </div>
+  <div class="form-group">
+    <button class="btn btn-success">Send</button>
+  </div>
+</form>

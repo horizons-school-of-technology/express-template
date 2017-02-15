@@ -1,0 +1,21 @@
+<h3>Contacts</h3>
+<table class="table table-hover">
+  <thead>
+    <td><b>Name</b></td>
+    <td><b>Phone</b></td>
+    <td><b>Email</b></td>
+    <td><b>Actions</b></td>
+  </thead>
+  <tbody>
+{{#each contacts}}
+  <tr>
+    <td>{{name}}</td>
+    <td>{{phone}}</td>
+    <td>{{email}}</td>
+    <td><a class="btn btn-default" href="/contacts/{{_id}}">Edit contact</a></td>
+    <td><a class="btn btn-primary" href="/messages/send/{{_id}}">Open chat</a></td>
+  </tr>
+{{/each}}
+  </tbody>
+</table>
+<a class="btn btn-primary" href="/contacts/new">Create new contact</a>
