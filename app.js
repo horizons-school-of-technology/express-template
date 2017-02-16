@@ -40,8 +40,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Passport
 app.use(session({
-      secret: process.env.SECRET,
-    store: new MongoStore({ mongooseConnection: mongoose.connection })
+  secret: process.env.SECRET,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 
 
