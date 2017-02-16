@@ -1,11 +1,14 @@
 var express = require('express');
 var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
+var mongoose = require('mongoose');
+var connect = process.env.MONGODB_URI;
 
 var REQUIRED_ENV = "SECRET MONGODB_URI".split(" ");
 
@@ -15,6 +18,9 @@ REQUIRED_ENV.forEach(function(el) {
     process.exit(1);
   }
 });
+
+
+mongoose.connect(connect);
 
 var models = require('./models');
 
@@ -33,7 +39,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Passport
-app.use(session({secret: process.env.SECRET}));
+app.use(session({
+      secret: process.env.SECRET,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
+
+
 app.use(passport.initialize());
 app.use(passport.session());
 
