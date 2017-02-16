@@ -7,3 +7,4 @@ npm-debug.log
 .idea/
 *.swp
 connect.js
+env.sh
