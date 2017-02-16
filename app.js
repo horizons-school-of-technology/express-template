@@ -53,9 +53,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
-  models.User.findById(id, function(err, user) {
-    done(err, user);
-  });
+  models.User.findById(id, done);
 });
 
 // passport strategy
@@ -64,12 +62,11 @@ passport.use(new LocalStrategy(function(username, password, done) {
   models.User.findOne({ username: username }, function (err, user) {
     // if there's an error, finish trying to authenticate (auth failed)
     if (err) {
-      console.error(err);
+      console.error('Error fetching user in LocalStrategy', err);
       return done(err);
     }
     // if no user present, auth failed
     if (!user) {
-      console.log(user);
       return done(null, false, { message: 'Incorrect username.' });
     }
     // if passwords do not match, auth failed

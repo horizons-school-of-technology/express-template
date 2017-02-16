@@ -4,6 +4,7 @@ var models = require('../models');
 var User = models.User;
 
 //////////////////////////////// PUBLIC ROUTES ////////////////////////////////
+// Users who are not logged in can see these routes
 
 router.get('/', function(req, res, next) {
   res.render('home');
@@ -20,6 +21,7 @@ router.use(function(req, res, next){
 });
 
 //////////////////////////////// PRIVATE ROUTES ////////////////////////////////
+// Only logged in users can see these routes
 
 router.get('/protected', function(req, res, next) {
   res.render('protectedRoute', {
