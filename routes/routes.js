@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var models = require('../models/models');
+var models = require('../models');
 
-var Contact = models.Contact;
-var Message = models.Message;
+
 var User = models.User;
 
 

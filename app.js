@@ -6,16 +6,16 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
-var FacebookStrategy = require('passport-facebook');
 
 var REQUIRED_ENV = "SECRET MONGODB_URI".split(" ");
 REQUIRED_ENV.forEach(function(el) {
-  if (!process.env[el])
+  if (!process.env[el]){
     console.error("Missing required env var " + el);
     process.exit(1);
+  }
 });
 
-var models = require('./models/models');
+var models = require('./models');
 
 var routes = require('./routes/routes');
 var auth = require('./routes/auth');
@@ -25,15 +25,13 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-// Se
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Passport stuff here
-
+// Passport
 app.use(session({secret: process.env.SECRET}));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -50,26 +48,26 @@ passport.deserializeUser(function(id, done) {
 
 // passport strategy
 passport.use(new LocalStrategy(function(username, password, done) {
-    // Find the user with the given username
-    models.User.findOne({ username: username }, function (err, user) {
-      // if there's an error, finish trying to authenticate (auth failed)
-      if (err) {
-        console.error(err);
-        return done(err);
-      }
-      // if no user present, auth failed
-      if (!user) {
-        console.log(user);
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      // if passwords do not match, auth failed
-      if (user.password !== password) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      // auth has has succeeded
-      return done(null, user);
-    });
-  }
+  // Find the user with the given username
+  models.User.findOne({ username: username }, function (err, user) {
+    // if there's an error, finish trying to authenticate (auth failed)
+    if (err) {
+      console.error(err);
+      return done(err);
+    }
+    // if no user present, auth failed
+    if (!user) {
+      console.log(user);
+      return done(null, false, { message: 'Incorrect username.' });
+    }
+    // if passwords do not match, auth failed
+    if (user.password !== password) {
+      return done(null, false, { message: 'Incorrect password.' });
+    }
+    // auth has has succeeded
+    return done(null, user);
+  });
+}
 ));
 
 app.use('/', auth(passport));

@@ -2,7 +2,7 @@
 
 var express = require('express');
 var router = express.Router();
-var models = require('../models/models');
+var models = require('../models');
 
 module.exports = function(passport) {
 
@@ -48,7 +48,7 @@ module.exports = function(passport) {
   // POST Login page
   router.post('/login', passport.authenticate('local', {
     // REDIRECTS FOR SUCCESS AND FAILURE
-  })
+  }))
 
   // GET Logout page
   router.get('/logout', function(req, res) {
