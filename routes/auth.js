@@ -25,8 +25,7 @@ module.exports = function(passport) {
     }
     var u = new models.User({
       username: req.body.username,
-      password: req.body.password,
-      phone: fromPhone
+      password: req.body.password
     });
     u.save(function(err, user) {
       if (err) {
@@ -46,14 +45,15 @@ module.exports = function(passport) {
 
 
   // POST Login page
-  router.post('/login', passport.authenticate('local', {
-    // REDIRECTS FOR SUCCESS AND FAILURE
-  }))
+  router.post('/login', passport.authenticate('local',{
+    successRedirect: '/protected',
+    failureRedirect: '/login'
+  }));
 
   // GET Logout page
   router.get('/logout', function(req, res) {
     req.logout();
-    res.redirect('/login');
+    res.redirect('/');
   });
 
   return router;
