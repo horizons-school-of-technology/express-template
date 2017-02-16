@@ -1,4 +1,4 @@
 dev.markdown
-env.sh
+.env
 bin/www
 node_modules

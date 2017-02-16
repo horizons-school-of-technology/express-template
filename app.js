@@ -8,6 +8,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local');
 
 var REQUIRED_ENV = "SECRET MONGODB_URI".split(" ");
+
 REQUIRED_ENV.forEach(function(el) {
   if (!process.env[el]){
     console.error("Missing required env var " + el);
