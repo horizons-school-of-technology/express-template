@@ -16,14 +16,7 @@ You have two ways of working on your project: Local and Gomix.
 
 ### Gomix Development
 
-1. Visit `https://gomix.com/`
-1. Create a new project.
-1. Click on the name of the project, click on advanced options and then on
-“Import from github"
-1. Fill the repo field with `horizons-school-of-technology/express-template`
-1. Create a `.env` file that contains:
-
-  ```
-  export MONGODB_URI='YOUR URI';
-  export SECRET='YOUR SECRET'
-  ```
+1. Go to https://gomix.com/#!/project/express-template and click
+  `Remix this 🎤`
+1. Select `.env` on the left panel, add your `MONGODB_URI` and `SECRET`
+1. Click `Show` at the top to preview your app!
