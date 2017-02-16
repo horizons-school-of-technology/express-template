@@ -1,5 +1,4 @@
 // Add Passport-related auth routes here.
-
 var express = require('express');
 var router = express.Router();
 var models = require('../models');
@@ -11,14 +10,9 @@ module.exports = function(passport) {
     res.render('signup');
   });
 
-  // POST registration page
-  var validateReq = function(userData) {
-    return (userData.password === userData.passwordRepeat);
-  };
-
   router.post('/signup', function(req, res) {
     // validation step
-    if (!validateReq(req.body)) {
+    if (req.body.password!==req.body.passwordRepeat) {
       return res.render('signup', {
         error: "Passwords don't match."
       });
@@ -42,7 +36,6 @@ module.exports = function(passport) {
   router.get('/login', function(req, res) {
     res.render('login');
   });
-
 
   // POST Login page
   router.post('/login', passport.authenticate('local',{

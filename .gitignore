@@ -1,4 +1,9 @@
 dev.markdown
 .env
-bin/www
-node_modules
+node_modules/
+npm-debug.log
+.tmp
+.DS_Store
+.idea/
+*.swp
+connect.js
