@@ -16,7 +16,7 @@ You have two ways of working on your project: Local and Gomix.
 
 ### Gomix Development
 
-1. Go to https://gomix.com/#!/project/express-template and click
+1. Go to https://glitch.com/edit/#!/horizons-hackathon and click
   `Remix this 🎤`
 1. Select `.env` on the left panel, add your `MONGODB_URI` and `SECRET`
 1. Click `Show` at the top to preview your app!
