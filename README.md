@@ -14,7 +14,7 @@ You have two ways of working on your project: Local and Gomix.
 
 1. Run `source .env`, and you are good to go!
 
-### Gomix Development
+### Glitch Development
 
 1. Go to https://glitch.com/edit/#!/horizons-hackathon and click
   `Remix this 🎤`
