@@ -30,7 +30,6 @@ rtm.on(CLIENT_EVENTS.RTM.RTM_CONNECTION_OPENED, function () {
 rtm.on(RTM_EVENTS.MESSAGE, function(message) {
   var dm = rtm.dataStore.getDMByUserId(message.user)
   if(!dm || dm.id !== message.channel || message.type !== 'message') {
-    console.log('message not sent to DM, try again')
     return;
   }
   // rtm.sendMessage(message.text, message.channel)
