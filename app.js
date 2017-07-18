@@ -14,4 +14,4 @@ app.post('endpointof ngrok', function(req, res) {
   } else {
     res.send('Cancelled')
   }
-})
+});
