@@ -1,8 +1,5 @@
-require('./bot')
-var express = require('express')
-var app = express()
-var bodyParser = require('body-parser')
 
+<<<<<<< HEAD
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -15,3 +12,5 @@ app.post('endpointof ngrok', function(req, res) {
     res.send('Cancelled')
   }
 });
+=======
+>>>>>>> 2511961dc077b091d577a8f95db05cb1bbc75689
