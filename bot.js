@@ -10,9 +10,6 @@ var axios = require('axios')
 var API_AI_TOKEN = process.env.API_AI_TOKEN
 let channel;
 
-
-
-
 //RTM
 // The client will emit an RTM.AUTHENTICATED event on successful connection, with the `rtm.start` payload
 rtm.on(CLIENT_EVENTS.RTM.AUTHENTICATED, (rtmStartData) => {
