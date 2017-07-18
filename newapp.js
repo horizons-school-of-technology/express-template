@@ -1,10 +1,4 @@
 require('./bot')
-var express = require('express')
-var app = express()
-var bodyParser = require('body-parser')
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 
 app.post('endpointof ngrok', function(req, res) {
   res.send('received :fire:')
