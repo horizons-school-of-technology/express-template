@@ -52,27 +52,27 @@ rtm.on(RTM_EVENTS.MESSAGE, function(message) {
       //should work w the API AI business
     } else {
       console.log('ACTION IS COMPLETE', data.result.parameters)
-      web.chat.postMessage(message.channel, `Creating reminder for ${data.result.parameters.description} on ${data.result.parameters.date}`, {
-        "text": "Would you like to play a game?",
+      web.chat.postMessage(message.channel, `Creating reminder for ${data.result.parameters.subject} on ${data.result.parameters.date}`, {
+        "text": "Confirm this reminder???",
         "attachments": [
           {
-            "text": "Choose a game to play",
-            "fallback": "You are unable to choose a game",
+            "text": "Confirm this reminder?",
+            "fallback": "You are unable to confirm",
             "callback_id": "wopr_game",
             "color": "#3AA3E3",
             "attachment_type": "default",
             "actions": [
               {
                 "name": "confirm",
-                "text": "Confirm",
+                "text": "confirm",
                 "type": "button",
                 "value": "true"
               },
               {
-                "name": "game",
-                "text": "Falken's Maze",
+                "name": "cancel",
+                "text": "cancel",
                 "type": "button",
-                "value": "maze"
+                "value": "false"
               }
             ]
           }
