@@ -18,10 +18,14 @@ mongoose.connection.on('error', function() {
 mongoose.connect(process.env.MONGODB_URI)
 
 app.post('/messages', function(req, res) {
- res.send('received :fire:')
+
  var payload = JSON.parse(req.body.payload);  //lets us access the action they picked on the button
  if(payload.actions[0].value === 'true') {
+  //  User.findById(req.user.id, function(req, res))
    res.send('Created reminder');
+   //FIRST THING WEDNESDAY
+   //handle the cal!! figure out how to use the api, should be easy, just amking the events
+
  } else {
    res.send('Cancelled')
  }
@@ -57,6 +61,7 @@ app.get('/connect', function(req, res){
         res.status(400).send('Missing user id');
     }
     else {
+      console.log("RES!!!", res)
     User.findById(userId)
         .then(function(user){
               if (! user){
@@ -94,6 +99,7 @@ app.get('/connect/callback', function(req, res){
                     //MIGHT BE A PROBLEM: AUTH_ID, JSON.PARSE DECODE
                     console.log('REQ QEURY SATAE', req.query.state)
                     console.log("json", decodeURIComponent(req.query.state))
+                    console.log('eEXPRIY', res.expiry_date)
                     User.findById(req.query.state)
                     .then(function(mongoUser){
                         mongoUser.google = tokens;

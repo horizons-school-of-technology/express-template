@@ -30,12 +30,14 @@ rtm.on(CLIENT_EVENTS.RTM.RTM_CONNECTION_OPENED, function () {
 
 rtm.on(RTM_EVENTS.MESSAGE, function(message) {
   var dm = rtm.dataStore.getDMByUserId(message.user)
+  console.log("a")
   if(!dm || dm.id !== message.channel || message.type !== 'message') {
     return;
   }
   // rtm.sendMessage(message.text, message.channel)
   User.findOne({slackId: message.user})
     .then(function(user){
+
         if (! user) {
             return new User({
                 slackId: message.user,
@@ -46,8 +48,7 @@ rtm.on(RTM_EVENTS.MESSAGE, function(message) {
         return user;
     })
     .then(function(user){
-        console.log('User id is', user.id, message.channel);
-        if(!user.google){
+        if(!user.google || user.google.expiry_date < Date.now() ){
             rtm.sendMessage(`Hello,
                 This is Schedule Bot.  In order to schedule reminders for you, I
                 need access to your Google Calandar.
@@ -55,58 +56,70 @@ rtm.on(RTM_EVENTS.MESSAGE, function(message) {
                 Please visit http://localhost:3000/connect?user=${user._id} to setup Google Calandar`, message.channel);
                 return;
         }
+        else {
+          axios.get('https://api.api.ai/api/query', { //makes an http request to this url (just like ajax)
+            params: {
+              v: 20150910,
+              lang: 'en',
+              timezone: '2017-07-17T16:55:52-0700',
+              query: message.text,
+              sessionId: message.user,
+            },
+            headers: {
+              Authorization: `Bearer ${process.env.API_AI_TOKEN}`
+            }
+          })
+          .then(function({ data }) {
+            console.log('DATA IS', {data})
+            if(data.result.actionIncomplete) {
+              rtm.sendMessage(data.result.fulfillment.speech, message.channel);
 
-        axios.get('https://api.api.ai/api/query', { //makes an http request to this url (just like ajax)
-          params: {
-            v: 20150910,
-            lang: 'en',
-            timezone: '2017-07-17T16:55:52-0700',
-            query: message.text,
-            sessionId: message.user,
-          },
-          headers: {
-            Authorization: `Bearer ${process.env.API_AI_TOKEN}`
-          }
-        })
-        .then(function({ data }) {
-          console.log('DATA IS', {data})
-          if(data.result.actionIncomplete) {
-            rtm.sendMessage(data.result.fulfillment.speech, message.channel);
-            //should work w the API AI business
-          } else {
-            console.log('ACTION IS COMPLETE', data.result.parameters)
-            web.chat.postMessage(message.channel, `Creating reminder for ${data.result.parameters.subject} on ${data.result.parameters.date}`, {
-              "text": "Confirm this reminder???",
-              "attachments": [
-                {
-                  "text": "Confirm this reminder?",
-                  "fallback": "You are unable to confirm",
-                  "callback_id": "wopr_game",
-                  "color": "#3AA3E3",
-                  "attachment_type": "default",
-                  "actions": [
-                    {
-                      "name": "confirm",
-                      "text": "confirm",
-                      "type": "button",
-                      "value": "true"
-                    },
-                    {
-                      "name": "cancel",
-                      "text": "cancel",
-                      "type": "button",
-                      "value": "false"
-                    }
-                  ]
-                }
-              ]
-            })
-          }
-        })
+              //should work w the API AI business
+            } else {
+              console.log('ACTION IS COMPLETE', data)
+
+              user.pending= {
+                subject: data.result.parameters.subject,
+                date: data.result.parameters.date
+              }
+              user.save()
+
+              web.chat.postMessage(message.channel, `Creating reminder for ${data.result.parameters.subject} on ${data.result.parameters.date}`, {
+                "text": "Confirm this reminder???",
+                "attachments": [
+                  {
+                    "text": "Confirm this reminder?",
+                    "fallback": "You are unable to confirm",
+                    "callback_id": "wopr_game",
+                    "color": "#3AA3E3",
+                    "attachment_type": "default",
+                    "actions": [
+                      {
+                        "name": "confirm",
+                        "text": "confirm",
+                        "type": "button",
+                        "value": "true"
+                      },
+                      {
+                        "name": "cancel",
+                        "text": "cancel",
+                        "type": "button",
+                        "value": "false"
+                      }
+                    ]
+                  }
+                ]
+              })
+            }
+          })
+        }
+      })
+
+
     })
 
 
-})
+
 
 
 
@@ -127,5 +140,5 @@ rtm.start();
 //   } else {
 //     console.log('Message sent: ', res);
 //   }
-// });
+// })
 module.exports = rtm;

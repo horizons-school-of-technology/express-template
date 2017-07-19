@@ -11,8 +11,20 @@ var User = mongoose.model('User', {
         type: String,
         required: true
     },
-    google: {}
+    google: {},
+    pending: {
+
+    }
 });
+
+// var Task = mongoose.model('Task', {
+//   required: {
+//     subject: String,
+//     day: Date,
+//   },
+//   eventId: String,
+//   requesterId: String
+// })
 
 module.exports = {
     User
