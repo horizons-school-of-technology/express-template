@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "cron": "node cron.js"
   },
   "dependencies": {
     "@slack/client": "^3.10.0",
@@ -15,8 +16,10 @@
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.13.0",
+    "google-auth-library": "^0.10.0",
     "googleapis": "^20.1.0",
     "hbs": "~3.1.0",
+    "moment": "^2.18.1",
     "mongoose": "^4.11.3",
     "mongoose-findorcreate": "^0.1.2",
     "morgan": "~1.6.1",
