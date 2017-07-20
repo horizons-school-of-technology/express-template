@@ -124,11 +124,11 @@ rtm.on(RTM_EVENTS.MESSAGE, function(message) {
   });
 
 
-  rtm.start();
-var port = process.env.PORT || '3000';
-  rtm.listen(port, function() {
-      console.log('port is running!')
-  })
+rtm.start();
+// var port = process.env.PORT || '3000';
+//   rtm.listen(port, function() {
+//       console.log('port is running!')
+//   })
 
 module.exports = {
     rtm,
