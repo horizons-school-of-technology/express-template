@@ -4,7 +4,7 @@ var RTM_EVENTS = require('@slack/client').RTM_EVENTS;
 var CLIENT_EVENTS = require('@slack/client').CLIENT_EVENTS;
 // var token = process.env.SLACK_API_TOKEN || ''; //see section above on sensitive data
 var bot_token = process.env.SLACK_BOT_TOKEN || '';
-console.log("BOT TOKEN", bot_token)
+console.log("BOT TOKEN", bot_token);
 var rtm = new RtmClient(bot_token); //initializing slack library, listeners
 var web = new WebClient(bot_token);
 var axios = require('axios')
