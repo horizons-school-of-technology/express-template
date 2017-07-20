@@ -1,15 +1,30 @@
 var mongoose = require('mongoose');
+mongoose.Promise = global.Promise
+mongoose.connect(process.env.MONGODB_URI);
 
-var userSchema = mongoose.Schema({
-  username: String,
-  password: String,
-  phone: String
+var User = mongoose.model('User', {
+    slackId: {
+        type: String,
+        required: true
+    },
+    slackDmId: {
+        type: String,
+        required: true
+    },
+    google: {},
+    pending: {
+    }
 });
 
-
-
-User = mongoose.model('User', userSchema);
+var Reminder = mongoose.model('Reminder', {
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
+  },
+  date: Date
+})
 
 module.exports = {
-    User:User
-};
+    User,
+    Reminder
+}
