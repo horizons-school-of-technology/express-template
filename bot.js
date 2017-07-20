@@ -74,7 +74,7 @@ rtm.on(RTM_EVENTS.MESSAGE, function(message) {
 
             //should work w the API AI business
           } else {
-            console.log('ACTION IS COMPLETE', data)
+            console.log('ACTION ISjjj COMPLETE', data)
 
             user.pending = {
               subject: data.result.parameters.subject,
