@@ -51,7 +51,7 @@ rtm.on(RTM_EVENTS.MESSAGE, function(message) {
       rtm.sendMessage(`Hello,
         This is Schedule Bot.  In order to schedule reminders for you, I
         need access to your Google Calandar.
-        ${process.env.DOMAIN}/connect?user=${user._id} to setup Google Calendar`, message.channel);
+        ${process.env.DOMAIN}connect?user=${user._id} to setup Google Calendar`, message.channel);
         return;
         //replace this w heroku url
       }
