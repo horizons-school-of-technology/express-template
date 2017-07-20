@@ -16,15 +16,15 @@ var User = mongoose.model('User', {
     }
 });
 
-// var Task = mongoose.model('Task', {
-//   required: {
-//     subject: String,
-//     day: Date,
-//   },
-//   eventId: String,
-//   requesterId: String
-// })
+var Reminder = mongoose.model('Reminder', {
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
+  },
+  date: Date
+})
 
 module.exports = {
-    User
+    User,
+    Reminder
 }
