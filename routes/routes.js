@@ -3,12 +3,16 @@ var router = express.Router();
 var models = require('../models');
 var User = models.User;
 var Book = models.Book;
+var depts = require('../departments');
 
 //////////////////////////////// PUBLIC ROUTES ////////////////////////////////
 // Users who are not logged in can see these routes
 
 router.get('/', function(req, res, next) {
-  res.render('home');
+  console.log(depts.depts);
+  res.render('home', {
+    depts: depts.depts
+  });
 });
 
 ///////////////////////////// END OF PUBLIC ROUTES /////////////////////////////
@@ -32,15 +36,14 @@ router.use(function(req, res, next){
   //   });
   // });
 router.get('/profile', function(req, res, next) {
-    Book.find({
-        owner: req.user._id})
-        .then((books) => {
-            res.render('profile', {
-              username: req.user.username,
-              books: books
-              })
+  Book.find({owner: req.user._id})
+    .then((books) => {
+      res.render('profile', {
+        username: req.user.username,
+        books: books
         })
-  });
+    })
+});
 
 router.get('/addbook', function(req, res, next) {
   res.render('addbook', {
@@ -48,7 +51,7 @@ router.get('/addbook', function(req, res, next) {
     //books: books
   });
 });
-//add this book to the booksowned array on the User model???
+
 router.post('/addbook', function(req, res, next) {
   var book = new Book({
     title: req.body.title,
@@ -62,6 +65,12 @@ router.post('/addbook', function(req, res, next) {
     res.redirect('/profile');
   })
 });
+
+router.get('/searchresults/:searchQuery/:dept', function(req, res, next) {
+  res.render('searchresults', {
+    //books:
+  })
+})
 
 ///////////////////////////// END OF PRIVATE ROUTES /////////////////////////////
 
