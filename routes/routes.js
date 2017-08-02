@@ -67,7 +67,7 @@ router.post('/removebook/:id', function(req, res, next){
 router.get('/addbook', function(req, res, next) {
   res.render('addbook', {
     username: req.user.username,
-    //books: books
+    depts: depts.depts
   });
 });
 
@@ -75,10 +75,11 @@ router.post('/addbook', function(req, res, next) {
   var book = new Book({
     title: req.body.title,
     author: req.body.author,
-    department: req.body.department,
+    department: req.body.department,//jquery here??
     price:  req.body.price,
     owner: req.user._id
   });
+  console.log(book);
   book.save(function(err) {
     if (err) return next(err);
     res.redirect('/profile');

@@ -10,14 +10,21 @@
     <input type="text" name="author" class="form-control">
   </div>
   <div class="form-group">
-    <label>Department</label>
-    <input type="text" name="department" class="form-control">
+      <select name="department" class="ui dropdown">
+            <option disabled selected>Department</option>
+              {{#each depts}}
+              <option>{{this}}</option>
+              {{/each}}
+      </select>
   </div>
-  <div class="form-group">
-    <label>Price</label>
-    <input type="number" name="price" class="form-control">
-  </div>
+  <div class="input-group">
+  <span class="input-group-addon">$</span>
+  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+  <span class="input-group-addon">.00</span>
+</div>
   <div class="form-group">
     <button class="btn btn-success">Send</button>
   </div>
 </form>
+
+<!-- make deparmnte dropdonpm wn -->
