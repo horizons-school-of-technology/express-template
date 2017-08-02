@@ -17,6 +17,11 @@ module.exports = function(passport) {
         error: "Passwords don't match."
       });
     }
+    if (req.body.email.substr(req.body.email.length-3) !== 'edu') {
+      return res.render('signup', {
+        error: "Please enter a valid .edu email address."
+      })
+    }
     var u = new models.User({
       username: req.body.username,
       password: req.body.password
