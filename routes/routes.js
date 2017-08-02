@@ -9,10 +9,7 @@ var depts = require('../departments');
 // Users who are not logged in can see these routes
 
 router.get('/', function(req, res, next) {
-  console.log(depts.depts);
-  res.render('home', {
-    depts: depts.depts
-  });
+  res.render('home');
 });
 
 ///////////////////////////// END OF PUBLIC ROUTES /////////////////////////////
