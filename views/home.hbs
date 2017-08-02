@@ -1,6 +1,79 @@
-<h3>Home</h3>
-<p>Everyone visiting your site will be able to see this page, no login required</p>
+<h2>BOOKSWAP</h2>
+<div>
+  <p>A marketplace for students to buy/sell textbooks.</p>
+</div>
+<br/>
+  <div class="col-lg-6">
+    <div class="input-group">
+      <input type="text" class="form-control" aria-label="..." placeholder="Search for a book...">
+      <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Department  <span class="caret"></span></button>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <!-- do a forEach through departments passed in to component. might not want to make these links. -->
+          <li><a href="#">Computer Science</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#">Separated link</a></li>
+        </ul>
+      </div><!-- /btn-group -->
+    </div><!-- /input-group -->
+  </div><!-- /.col-lg-6 -->
+<br/>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="panel panel-info ">
+      <div class="panel-heading"><h4>For buyers: </h4></div>
+      <table class="table table-striped">
+      <tbody>
+        <tr>
+          <td>1. Register and login to search for a book</td>
+        </tr>
+        <tr>
+          <td>2. Contact seller</td>
+        </tr>
+        <tr>
+          <td>3. Negotiate and settle on price with seller</td>
+        </tr>
+        <tr>
+          <td>4. Decide where/when to meet seller</td>
+        </tr>
+        <tr>
+          <td>5. Pick up your book!</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="panel panel-info">
+      <div class="panel-heading"><h4>For sellers: </h4></div>
+      <table class="table table-striped">
+      <tbody>
+        <tr>
+          <td>1. Register and login to put books up</td>
+        </tr>
+        <tr>
+          <td>2. Post book</td>
+        </tr>
+        <tr>
+          <td>3. Wait to be contacted</td>
+        </tr>
+        <tr>
+          <td>4. Meet and sell</td>
+        </tr>
+        <tr>
+          <td>5. Delete book from Bookswap</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
 
 <br />
+
 
 <span>Visit a page that requires you to be logged in</span> <a href="/profile" class="btn btn-primary">Here</a>
