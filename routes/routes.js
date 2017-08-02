@@ -9,7 +9,15 @@ var depts = require('../departments');
 // Users who are not logged in can see these routes
 
 router.get('/', function(req, res, next) {
-  res.render('home');
+    Book.find()
+        .limit(3)
+            .exec(function(err, books){
+        console.log(books);
+        if (err) return next(err);
+        res.render('home', {
+            books: books
+        });
+    });
 });
 
 router.get('/users', function(req, res, next) {
