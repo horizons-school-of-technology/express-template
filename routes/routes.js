@@ -15,6 +15,25 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/users', function(req, res, next) {
+  User.find(function(err, users) {
+    if (err) return next(err);
+    res.render('users', {
+      users: users
+    });
+  });
+});
+
+router.get('/books', function(req, res, next){
+    Book.find(function(err, books){
+        console.log(books);
+        if (err) return next(err);
+        res.render('books', {
+            books: books
+        });
+    });
+});
+
 ///////////////////////////// END OF PUBLIC ROUTES /////////////////////////////
 
 router.use(function(req, res, next){
@@ -26,15 +45,6 @@ router.use(function(req, res, next){
 });
 
 //////////////////////////////// PRIVATE ROUTES ////////////////////////////////
-// Only logged in users can see these routes
-//what we have to do is .populate the books and the users.
-//then we have to do below except books: books
-// User.find(function(err, users) {
-  //   if (err) return next(err);
-  //   res.render('users', {
-  //     users: users
-  //   });
-  // });
 router.get('/profile', function(req, res, next) {
   Book.find({owner: req.user._id})
     .then((books) => {
@@ -67,7 +77,7 @@ router.post('/removebook/:id', function(req, res, next){
 router.get('/addbook', function(req, res, next) {
   res.render('addbook', {
     username: req.user.username,
-    //books: books
+    depts: depts.depts
   });
 });
 
@@ -75,10 +85,12 @@ router.post('/addbook', function(req, res, next) {
   var book = new Book({
     title: req.body.title,
     author: req.body.author,
-    department: req.body.department,
+    department: req.body.department,//jquery here??
     price:  req.body.price,
-    owner: req.user._id
+    owner: req.user._id,
+    email: req.user.email
   });
+  console.log(book);
   book.save(function(err) {
     if (err) return next(err);
     res.redirect('/profile');
