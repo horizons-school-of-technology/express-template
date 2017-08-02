@@ -16,7 +16,6 @@ const bookSchema = mongoose.Schema({
     author: String,
     department: String,
     price: String,
-
 });
 const Book = mongoose.model('Book', bookSchema);
 
