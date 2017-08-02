@@ -3,19 +3,16 @@
   <p>A marketplace for students to buy/sell textbooks.</p>
 </div>
 <br/>
+  <form action="/searchresults" method="POST" >
     <div class="col-md-5 col-md-offset-3">
-      <div class="input-group">
-        <input type="text" class="form-control" aria-label="..." placeholder="Search for a book...">
-        <div class="form-group">
-            <select name="department" class="ui dropdown">
-                  <option disabled selected>Department</option>
-                    {{#each depts}}
-                    <option>{{this}}</option>
-                    {{/each}}
-            </select>
-        </div><!-- /btn-group -->
-      </div><!-- /input-group -->
+       <div class="input-group">
+         <input type="text" class="form-control" placeholder="Search for...">
+         <span class="input-group-btn">
+           <button class="btn btn-info" type="button">Search BookSwap!</button>
+         </span>
+       </div><!-- /input-group -->
     </div><!-- /.col-lg-6 -->
+  </form>
   <br/>  <br/>  <br/>  <br/>
 
 
