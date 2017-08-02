@@ -69,5 +69,30 @@
 
 <br />
 
+<h1>TEXTBOOKS AVAILABLE</h1>
+
+<table class="table table-hover">
+  <thead>
+    <td><b>Title</b></td>
+    <td><b>Author</b></td>
+    <td><b>Department</b></td>
+    <td><b>Price</b></td>
+    <td><b>Owner</b></td>
+  </thead>
+  <tbody>
+{{#each books}}
+  <tr>
+    <td>{{title}}</td>
+    <td>{{author}}</td>
+    <td>{{department}}</td>
+    <td>${{price}}</td>
+    <td>{{email}}</td>
+  </tr>
+{{/each}}
+  </tbody>
+</table>
+
+<a href="/books" class="btn btn-primary">All Books</a>
+
 
 <!-- <span>Visit a page that requires you to be logged in</span> <a href="/profile" class="btn btn-primary">Here</a> -->
