@@ -9,7 +9,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var mongoose = require('mongoose');
 var connect = process.env.MONGODB_URI;
-
+//what is secret MONGODB_URI???
 var REQUIRED_ENV = "SECRET MONGODB_URI".split(" ");
 
 REQUIRED_ENV.forEach(function(el) {
@@ -23,7 +23,6 @@ REQUIRED_ENV.forEach(function(el) {
 mongoose.connect(connect);
 
 var models = require('./models');
-
 var routes = require('./routes/routes');
 var auth = require('./routes/auth');
 var app = express();
