@@ -10,12 +10,12 @@ var userSchema = mongoose.Schema({
 User = mongoose.model('User', userSchema);
 //after we add a book, I need to add that book to the user scheme via helper function.
 const bookSchema = mongoose.Schema({
+    email: String,
     owner: String,
     title: String,
     author: String,
     department: String,
-    price: Number
-
+    price: String,
 });
 const Book = mongoose.model('Book', bookSchema);
 

@@ -14,8 +14,7 @@
     <td>{{title}}</td>
     <td>{{author}}</td>
     <td>{{department}}</td>
-    <td>{{price}}</td>
-    <!-- <td><a href="/removebook/{{_id}}" class="btn btn-default">Remove Book</a></td> -->
+    <td>${{price}}.00</td>
     <td>
         <form action="/removebook/{{_id}}" method="POST" >
             <div class="form-group">
@@ -30,5 +29,6 @@
 
 
 <br />
+<a href="/books" class="btn btn-primary">All Books</a>
 <a href="/addbook" class="btn btn-primary">Add Book</a>
 <a href="/logout" class="btn btn-primary">Logout</a>
