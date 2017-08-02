@@ -94,11 +94,17 @@ router.post('/addbook', function(req, res, next) {
   })
 });
 
-router.get('/searchresults/:searchQuery/:dept', function(req, res, next) {
-  res.render('searchresults', {
-    //books:
+router.post('/searchresults', function(req, res, next) {
+  console.log(req.body);
+  Book.find({title: new RegExp('^'+req.body.titleinput+'$', "i")})
+  .then((books) => {
+    console.log(books);
+    res.render('searchresults', {
+      books: books
+    });
   })
 })
+
 
 ///////////////////////////// END OF PRIVATE ROUTES /////////////////////////////
 
