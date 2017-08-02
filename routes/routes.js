@@ -45,6 +45,25 @@ router.get('/profile', function(req, res, next) {
     })
 });
 
+router.post('/removebook/:id', function(req, res, next){
+    var bookId = req.params.id;
+    console.log('+++++++++++++++++');
+      Book.findByIdAndRemove(bookId)
+      .then(() => {
+          console.log('----------');
+          Book.find({
+              owner: req.user._id})
+              .then((books) => {
+                  console.log('list of books', books);
+                  res.render('profile', {
+                    username: req.user.username,
+                    books: books
+                })
+              })
+    })
+})
+
+
 router.get('/addbook', function(req, res, next) {
   res.render('addbook', {
     username: req.user.username,
