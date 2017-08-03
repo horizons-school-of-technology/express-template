@@ -10,7 +10,7 @@ var depts = require('../departments');
 
 router.get('/', function(req, res, next) {
     Book.find()
-        .limit(3)
+        .limit(4)
             .exec(function(err, books){
         console.log(books);
         if (err) return next(err);
@@ -103,16 +103,19 @@ router.post('/addbook', function(req, res, next) {
 });
 
 router.post('/searchresults', function(req, res, next) {
-  console.log(req.body);
-  Book.find({title: new RegExp('^'+req.body.titleinput+'$', "i")})
+  console.log('helllowwwwwwwww');
+  var title = req.body.titleinput;
+  var first = title.split(" ")[0];
+  Book.find({ title: new RegExp('^'+first, "i") })
+  // Book.find({ title: {$regex : regex } })
   .then((books) => {
     console.log(books);
     res.render('searchresults', {
-      books: books
+      books: books,
+
     });
   })
 })
-
 
 ///////////////////////////// END OF PRIVATE ROUTES /////////////////////////////
 
