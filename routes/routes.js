@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
     Book.find()
         .limit(4)
             .exec(function(err, books){
-        if (err) return next(err);
+         if (err) return next(err);
         res.render('home', {
             books: books
         });
