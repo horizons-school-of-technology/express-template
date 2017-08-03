@@ -12,7 +12,6 @@ router.get('/', function(req, res, next) {
     Book.find()
         .limit(4)
             .exec(function(err, books){
-        console.log(books);
         if (err) return next(err);
         res.render('home', {
             books: books
@@ -31,13 +30,24 @@ router.get('/users', function(req, res, next) {
 
 router.get('/books', function(req, res, next){
     Book.find(function(err, books){
-        console.log(books);
         if (err) return next(err);
         res.render('books', {
             books: books
         });
     });
 });
+
+router.post('/searchresults', function(req, res, next) {
+  var title = req.body.titleinput;
+  var or = title.split(" ").join('|');
+  Book.find({ title: new RegExp(or, "i") })
+  .then((books) => {
+    res.render('searchresults', {
+      books: books,
+
+    });
+  })
+})
 
 ///////////////////////////// END OF PUBLIC ROUTES /////////////////////////////
 
@@ -62,14 +72,11 @@ router.get('/profile', function(req, res, next) {
 
 router.post('/removebook/:id', function(req, res, next){
     var bookId = req.params.id;
-    console.log('+++++++++++++++++');
       Book.findByIdAndRemove(bookId)
       .then(() => {
-          console.log('----------');
           Book.find({
               owner: req.user._id})
               .then((books) => {
-                  console.log('list of books', books);
                   res.render('profile', {
                     username: req.user.username,
                     books: books
@@ -95,27 +102,11 @@ router.post('/addbook', function(req, res, next) {
     owner: req.user._id,
     email: req.user.email
   });
-  console.log(book);
   book.save(function(err) {
     if (err) return next(err);
     res.redirect('/profile');
   })
 });
-
-router.post('/searchresults', function(req, res, next) {
-  console.log('helllowwwwwwwww');
-  var title = req.body.titleinput;
-  var first = title.split(" ")[0];
-  Book.find({ title: new RegExp('^'+first, "i") })
-  // Book.find({ title: {$regex : regex } })
-  .then((books) => {
-    console.log(books);
-    res.render('searchresults', {
-      books: books,
-
-    });
-  })
-})
 
 ///////////////////////////// END OF PRIVATE ROUTES /////////////////////////////
 
