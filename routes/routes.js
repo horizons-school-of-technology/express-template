@@ -19,35 +19,6 @@ router.get('/', function(req, res, next) {
     });
 });
 
-router.get('/users', function(req, res, next) {
-  User.find(function(err, users) {
-    if (err) return next(err);
-    res.render('users', {
-      users: users
-    });
-  });
-});
-
-router.get('/books', function(req, res, next){
-    Book.find(function(err, books){
-        if (err) return next(err);
-        res.render('books', {
-            books: books
-        });
-    });
-});
-
-router.post('/searchresults', function(req, res, next) {
-  var title = req.body.titleinput;
-  var or = title.split(" ").join('|');
-  Book.find({ title: new RegExp(or, "i") })
-  .then((books) => {
-    res.render('searchresults', {
-      books: books,
-
-    });
-  })
-})
 
 ///////////////////////////// END OF PUBLIC ROUTES /////////////////////////////
 
@@ -111,6 +82,57 @@ router.post('/addbook', function(req, res, next) {
     res.redirect('/profile');
   })
 });
+
+router.get('/users', function(req, res, next) {
+  User.find(function(err, users) {
+    if (err) return next(err);
+    res.render('users', {
+      users: users
+    });
+  });
+});
+
+router.get('/books', function(req, res, next){
+    Book.find(function(err, books){
+        if (err) return next(err);
+        res.render('books', {
+            books: books
+        });
+    });
+});
+
+router.post('/searchresults', function(req, res, next) {
+  var title = req.body.titleinput;
+  var or = title.split(" ").join('|');
+  Book.find({ title: new RegExp(or, "i") })
+  .then((books) => {
+    res.render('searchresults', {
+      books: books,
+      title: title
+    });
+  })
+});
+
+router.post('/contactseller/:id', function(req, res, next) {
+  var bookId = req.params.id;
+
+  var book = Book.findById(bookId);
+  var bookOwner = book.then(book => User.findById(book.owner));
+  var currentUser = User.findById(req.user._id);
+
+  Promise.all([book, bookOwner, currentUser]).then(
+    arrOfThings => {
+      var b = arrOfThings[0]
+      var bo = arrOfThings[1]
+      var cu = arrOfThings[2]
+      res.render('searchresults', {
+        book: b,
+        bookOwner: bo,
+        currentUser: cu
+      })
+    }
+  )
+})
 
 ///////////////////////////// END OF PRIVATE ROUTES /////////////////////////////
 
