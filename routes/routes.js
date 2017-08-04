@@ -70,6 +70,10 @@ router.get('/profile', function(req, res, next) {
     })
 });
 
+router.get('/contactseller', function(req, res, next){
+    res.render('contactseller');
+});
+
 router.post('/removebook/:id', function(req, res, next){
     var bookId = req.params.id;
       Book.findByIdAndRemove(bookId)
