@@ -1,3 +1,10 @@
+{{#if emailSent}}
+<div class="alert alert-success" role="alert">
+  <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
+  {{emailSent}}
+</div>
+{{/if}}
+
 <h2>BOOKSWAP</h2>
 <div>
   <p>A marketplace for students to buy/sell textbooks.</p>
@@ -95,6 +102,3 @@
 </table>
 
 <a href="/books" class="btn btn-primary">All Books</a>
-
-
-<!-- <span>Visit a page that requires you to be logged in</span> <a href="/profile" class="btn btn-primary">Here</a> -->
