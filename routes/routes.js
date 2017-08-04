@@ -125,7 +125,7 @@ router.post('/contactseller/:id', function(req, res, next) {
       var b = arrOfThings[0]
       var bo = arrOfThings[1]
       var cu = arrOfThings[2]
-      res.render('searchresults', {
+      res.render('contactseller', {
         book: b,
         bookOwner: bo,
         currentUser: cu
