@@ -4,14 +4,16 @@ var userSchema = mongoose.Schema({
   username: String,
   password: String,
   email: String,
-  phone: String,
-  booksOwned: Array
+  phone: String
 });
 User = mongoose.model('User', userSchema);
 //after we add a book, I need to add that book to the user scheme via helper function.
 const bookSchema = mongoose.Schema({
     email: String,
-    owner: String,
+    owner: {
+      ref: User,
+      type: mongoose.Schema.Types.ObjectId 
+    },
     title: String,
     author: String,
     department: String,
