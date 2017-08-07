@@ -1,6 +1,12 @@
-<h3>{{username}}'s Profile</h3>
+{{#if emailSent}}
+<div class="alert alert-success" role="alert">
+  <strong>Email Sent!</strong>
+</div>
+{{/if}}
 
-<h3>Books for Sale</h3>
+<h1 class=" profile font">{{username}}'s Profile</h1>
+
+<h3 class="font">Your Books for Sale</h3>
 <table class="table table-hover">
   <thead>
     <td><b>Title</b></td>
@@ -29,6 +35,7 @@
 
 
 <br />
-<a href="/books" class="btn btn-primary">All Books</a>
+
 <a href="/addbook" class="btn btn-primary">Add Book</a>
+<a href="/books" class="btn btn-primary">All Books</a>
 <a href="/logout" class="btn btn-primary">Logout</a>
