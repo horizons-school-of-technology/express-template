@@ -140,7 +140,6 @@ router.post('/contactseller/:id', function(req, res, next) {
 });
 
 router.post('/sendemail', function(req, res, next){
-
     var data = {
         from: req.body.sender,
         to: req.body.recipients,
@@ -148,8 +147,14 @@ router.post('/sendemail', function(req, res, next){
         text: req.body.text
     }
         mailgun.messages().send(data, function(error, body) {
-            console.log(body);
-            res.redirect('/profile');
+            Book.find({owner: req.user._id})
+            .then((books) => {
+                res.render('profile', {
+                    username: req.user.username,
+                    books: books,
+                    emailSent: true
+                })
+            })
     })
 })
 

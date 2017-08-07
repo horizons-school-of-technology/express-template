@@ -1,21 +1,15 @@
-{{#if emailSent}}
-<div class="alert alert-success" role="alert">
-  <span class="glyphicon glyphicon-send" aria-hidden="true"></span>
-  {{emailSent}}
-</div>
-{{/if}}
+<h1 class="font profile">BOOKSWAP</h1>
 
-<h2>BOOKSWAP</h2>
 <div>
-  <p>A marketplace for students to buy/sell textbooks.</p>
+  <p class="font">A marketplace for students to buy/sell textbooks at Bates.</p>
 </div>
 <br/>
   <form action="/searchresults" method="POST" >
     <div class="col-md-5 col-md-offset-3">
        <div class="input-group">
-         <input type="text" class="form-control" placeholder="Search for a title..." name="titleinput">
+         <input type="text" class="font form-control" placeholder="Search for a title..." name="titleinput">
          <span class="input-group-btn">
-           <button class="btn btn-info" type="submit">Search BookSwap!</button>
+           <button class="font search btn btn-info" type="submit">Search BookSwap!</button>
          </span>
        </div><!-- /input-group -->
     </div><!-- /.col-lg-6 -->
@@ -26,7 +20,7 @@
   <div class="row">
     <div class="col-sm-6">
       <div class="panel panel-info ">
-        <div class="panel-heading"><h4>For buyers: </h4></div>
+        <div class="bates batestext font panel-heading"><h4>For Buyers: </h4></div>
         <table class="table table-striped">
         <tbody>
           <tr>
@@ -50,7 +44,7 @@
     </div>
     <div class="col-sm-6">
       <div class="panel panel-info">
-        <div class="panel-heading"><h4>For sellers: </h4></div>
+        <div class="bates batestext font panel-heading"><h4>For Sellers: </h4></div>
         <table class="table table-striped">
         <tbody>
           <tr>
@@ -78,7 +72,7 @@
 
 <!-- Handlebars helper for iteration of only 5 books -->
 
-<h1>TEXTBOOKS AVAILABLE</h1>
+<h1 class="font profile">TEXTBOOKS AVAILABLE</h1>
 
 <table class="table table-hover">
   <thead>
@@ -108,4 +102,4 @@
   </tbody>
 </table>
 
-<a href="/books" class="btn btn-primary">All Books</a>
+<a href="/books" class=" button btn btn-primary">All Books</a>
