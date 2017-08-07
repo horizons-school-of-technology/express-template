@@ -96,6 +96,13 @@
     <td>{{department}}</td>
     <td>${{price}}</td>
     <td>{{email}}</td>
+    <td>
+        <form action="/contactseller/{{_id}}" method="POST" >
+            <div class="form-group">
+                <button class="btn btn-success">Contact Seller</button>
+            </div>
+        </form>
+    </td>
   </tr>
 {{/each}}
   </tbody>

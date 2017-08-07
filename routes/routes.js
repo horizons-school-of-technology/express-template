@@ -5,6 +5,11 @@ var User = models.User;
 var Book = models.Book;
 var depts = require('../departments');
 
+var public = process.env.PUBLIC_API;
+var secret = process.env.SECRET_API;
+var domain = process.env.DOMAIN;
+var mailgun = require('mailgun-js')({apiKey: secret, domain: domain});
+
 //////////////////////////////// PUBLIC ROUTES ////////////////////////////////
 // Users who are not logged in can see these routes
 
@@ -132,6 +137,20 @@ router.post('/contactseller/:id', function(req, res, next) {
       })
     }
   )
+});
+
+router.post('/sendemail', function(req, res, next){
+
+    var data = {
+        from: req.body.sender,
+        to: req.body.recipients,
+        subject: "Bobcat Book Exchange",
+        text: req.body.text
+    }
+        mailgun.messages().send(data, function(error, body) {
+            console.log(body);
+            res.redirect('/profile');
+    })
 })
 
 ///////////////////////////// END OF PRIVATE ROUTES /////////////////////////////
