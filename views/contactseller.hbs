@@ -3,12 +3,12 @@
 <form action="/sendemail" method="POST" >
     <div class="form-group">
         <label for="exampleInputEmail1"> To: </label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={{bookOwner.email}}>
+        <input type="email" name="recipients" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={{bookOwner.email}}>
         <small id="emailHelp" class="form-text text-muted">Email of seller</small>
     </div>
     <div class="form-group">
         <label for="exampleInputEmail1">From: </label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={{currentUser.email}}>
+        <input type="email" name="sender" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value={{currentUser.email}}>
         <small id="emailHelp" class="form-text text-muted">Your Email</small>
     </div>
     <!-- <div class="form-group">
@@ -18,14 +18,14 @@
     </div> -->
     <div class="form-group">
         <label for="exampleTextarea">Message To {{bookOwner.username}}: Feel free to make any edits</label>
-        <textarea class="form-control" id="exampleTextarea" rows="10">Hello {{bookOwner.username}},
+        <textarea class="form-control" name="text" id="exampleTextarea" rows="10">Hello {{bookOwner.username}},
 
-            I am interested in buying your book,  {{book.title}}.  Let me know when you have a chance to meet up.
+I am interested in buying your book,  {{book.title}}.  Let me know when you have a chance to meet up.
 
-            Also, what is your preferred method of payment?
+Also, what is your preferred method of payment?
 
-            Let me know,
-                        {{currentUser.username}}
+Let me know,
+                    {{currentUser.username}}
          </textarea>
     </div>
     <button type="submit" class="btn btn-primary">Send</button>
