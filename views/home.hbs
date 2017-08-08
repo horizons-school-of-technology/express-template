@@ -73,33 +73,36 @@
 <!-- Handlebars helper for iteration of only 5 books -->
 
 <h1 class="font profile">TEXTBOOKS AVAILABLE</h1>
-
-<table class="table table-hover">
-  <thead>
-    <td><b>Title</b></td>
-    <td><b>Author</b></td>
-    <td><b>Department</b></td>
-    <td><b>Price</b></td>
-    <td><b>Owner</b></td>
-  </thead>
-  <tbody>
-{{#each books}}
-  <tr>
-    <td>{{title}}</td>
-    <td>{{author}}</td>
-    <td>{{department}}</td>
-    <td>${{price}}</td>
-    <td>{{email}}</td>
-    <td>
-        <form action="/contactseller/{{_id}}" method="POST" >
-            <div class="form-group">
-                <button class="btn btn-success">Contact Seller</button>
-            </div>
-        </form>
-    </td>
-  </tr>
-{{/each}}
-  </tbody>
-</table>
+<div class="container-outer">
+    <div class="container-inner">
+        <table class="table table-hover">
+          <thead>
+            <td><b>Title</b></td>
+            <td><b>Author</b></td>
+            <td><b>Department</b></td>
+            <td><b>Price</b></td>
+            <td><b>Owner</b></td>
+          </thead>
+          <tbody>
+        {{#each books}}
+          <tr>
+            <td>{{title}}</td>
+            <td>{{author}}</td>
+            <td>{{department}}</td>
+            <td>${{price}}</td>
+            <td>{{email}}</td>
+            <td>
+                <form action="/contactseller/{{_id}}" method="POST" >
+                    <div class="form-group">
+                        <button class="btn btn-success">Contact Seller</button>
+                    </div>
+                </form>
+            </td>
+          </tr>
+        {{/each}}
+          </tbody>
+        </table>
+    </div>
+</div>
 
 <a href="/books" class=" button btn btn-primary">All Books</a>

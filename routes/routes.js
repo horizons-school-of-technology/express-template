@@ -24,6 +24,15 @@ router.get('/', function(req, res, next) {
     });
 });
 
+router.get('/books', function(req, res, next){
+    Book.find(function(err, books){
+        if (err) return next(err);
+        res.render('books', {
+            books: books
+        });
+    });
+});
+
 
 ///////////////////////////// END OF PUBLIC ROUTES /////////////////////////////
 
@@ -97,14 +106,6 @@ router.get('/users', function(req, res, next) {
   });
 });
 
-router.get('/books', function(req, res, next){
-    Book.find(function(err, books){
-        if (err) return next(err);
-        res.render('books', {
-            books: books
-        });
-    });
-});
 
 router.post('/searchresults', function(req, res, next) {
   var title = req.body.titleinput;
