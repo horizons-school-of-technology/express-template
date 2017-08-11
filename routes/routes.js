@@ -34,6 +34,19 @@ router.get('/books', function(req, res, next){
 });
 
 
+router.post('/searchresults', function(req, res, next) {
+  var title = req.body.titleinput;
+  var or = title.split(" ").join('|');
+  Book.find({ title: new RegExp(or, "i") })
+  .then((books) => {
+    res.render('searchresults', {
+      books: books,
+      title: title
+    });
+  })
+});
+
+
 ///////////////////////////// END OF PUBLIC ROUTES /////////////////////////////
 
 router.use(function(req, res, next){
@@ -104,19 +117,6 @@ router.get('/users', function(req, res, next) {
       users: users
     });
   });
-});
-
-
-router.post('/searchresults', function(req, res, next) {
-  var title = req.body.titleinput;
-  var or = title.split(" ").join('|');
-  Book.find({ title: new RegExp(or, "i") })
-  .then((books) => {
-    res.render('searchresults', {
-      books: books,
-      title: title
-    });
-  })
 });
 
 router.post('/contactseller/:id', function(req, res, next) {
