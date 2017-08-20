@@ -87,7 +87,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
     // auth has has succeeded
     return done(null, user);
   });
-})
+});
 }));
 
 app.use('/', auth(passport));
