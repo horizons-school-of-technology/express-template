@@ -1,3 +1,5 @@
+
+//list of departments at bates college
 var depts = [
   'African American Studies',
   'American Cultural Studies',
