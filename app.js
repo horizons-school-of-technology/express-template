@@ -112,7 +112,7 @@ if (app.get('env') === 'development') {
       error: err
     });
   });
-}
+};
 
 // production error handler
 // no stacktraces leaked to user
