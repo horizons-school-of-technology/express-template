@@ -15,6 +15,7 @@ var bcrypt = require('bcrypt');
 
 //what is secret MONGODB_URI???
 var REQUIRED_ENV = "SECRET MONGODB_URI".split(" ");
+//;alsdjf
 
 REQUIRED_ENV.forEach(function(el) {
   if (!process.env[el]){
