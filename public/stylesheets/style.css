@@ -10,7 +10,7 @@ section.module:last-child {
 }
 section.module h2 {
   margin-bottom: 40px;
-  font-family: "Roboto Slab", serif;
+  /*font-family: "Roboto Slab", serif;*/
   font-size: 30px;
 }
 section.module p {
