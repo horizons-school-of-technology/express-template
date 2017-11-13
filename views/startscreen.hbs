@@ -14,10 +14,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/base.css">
 
-  <script>
-    var myVideo =  iframe.getElementById('myVideo');
-    myVideo.mute();
-  </script>
+
   <!-- js -->
 </head>
 
@@ -35,8 +32,8 @@
       <section class="module content">
         <div class="container">
           <h2>Bates College Virtual Tour</h2>
-          <p>Bates College is a small liberal arts school in Lewiston, Maine.  This website is a virtual tour of our beautiful campus. Immerse yourselves by walking through buildings and exploring life at Bates.</p>
-          <iframe id="myVideo" width=100% height="500" src="https://www.youtube.com/embed/sYAuX9mg9l0?autoplay=1&rel=0&loop=1&amp;controls=0&amp;showinfo=0&amp;start=6" frameborder="0" allowfullscreen></iframe>
+          <p>Bates College is a small liberal arts school in Lewiston, Maine.  This website is a virtual tour of our beautiful campus. Immerse yourselves by walking through buildings and exploring life at Bates College.</p>
+          <iframe id="myVideo" width=100% height="500" src="https://www.youtube.com/embed/sYAuX9mg9l0?mute=1&autoplay=1&rel=0&loop=1&amp;controls=0&amp;showinfo=0&amp;start=6@mute=1" frameborder="0" allowfullscreen></iframe>
         </div>
       </section>
 
@@ -84,6 +81,7 @@ _gaq.push(['_trackPageview']);
   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();
 </script>
+<div id="muteYouTubeVideoPlayer"></div>
 
 </body>
 </html>
