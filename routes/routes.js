@@ -7,8 +7,13 @@ var User = models.User;
 // Users who are not logged in can see these routes
 
 router.get('/', function(req, res, next) {
-  res.render('home');
+  res.render('startscreen');
 });
+
+router.get('/home', function(req, res, next){
+    res.render('home')
+})
+
 
 ///////////////////////////// END OF PUBLIC ROUTES /////////////////////////////
 

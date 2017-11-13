@@ -55,7 +55,16 @@ section.module.parallax-3 {
 section.module.parallax-4 {
   background-image: url("../images/hedge.jpg");
 }
+section.module.parallax-5 {
+  background-image: url("../images/1.0.jpg");
+}
+section.module.parallax-7 {
+  background-image: url("../images/fog.jpg");
+}
 
+section.module.parallax-8 {
+  background-image: url("../images/ice.jpg");
+}
 @media all and (min-width: 600px) {
   section.module h2 {
     font-size: 42px;
@@ -72,3 +81,17 @@ section.module.parallax-4 {
     font-size: 160px;
   }
 }
+
+.button-area-line {
+  margin: 10px auto;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  max-width: 90%;
