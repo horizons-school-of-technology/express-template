@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 var models = require('../models');
 var _ = require('underscore');
-var bcrypt = require('bcrypt');
+// var bcrypt = require('bcrypt');
 
 
 module.exports = function(passport) {
@@ -27,11 +27,11 @@ module.exports = function(passport) {
     }
     //hash
     var params = _.pick(req.body, ['username', 'password', 'email']);
-    bcrypt.genSalt(10, function(err, salt) {
-      bcrypt.hash(params.password, salt, function(err, hash) {
-        // Store hash in your password DB.
-        params.password = hash;
-        Object.assign(params);
+    // bcrypt.genSalt(10, function(err, salt) {
+    //   bcrypt.hash(params.password, salt, function(err, hash) {
+    //     // Store hash in your password DB.
+    //     params.password = hash;
+    //     Object.assign(params);
         models.User.create(params, function(err, user) {
           if (err) {
             res.status(400).json({
