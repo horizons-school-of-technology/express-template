@@ -10,7 +10,6 @@ var LocalStrategy = require('passport-local');
 var mongoose = require('mongoose');
 var connect = process.env.MONGODB_URI;
 var _ = require('underscore');
-var bcrypt = require('bcrypt');
 
 
 //what is secret MONGODB_URI???
@@ -79,15 +78,7 @@ passport.use(new LocalStrategy(function(username, password, done) {
       return done(null, false, { message: 'Incorrect username.' });
     }
     // if passwords do not match, auth failed
-    bcrypt.compare(password, user.password, function(err, res) {
-     // res == true
-     if (!res) {
-       done(null, false, { message: 'Incorrect password.' });
-       return;
-     }
-    // auth has has succeeded
-    return done(null, user);
-  });
+    return user
 });
 }));
 

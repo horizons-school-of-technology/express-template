@@ -3,7 +3,6 @@ var express = require('express');
 var router = express.Router();
 var models = require('../models');
 var _ = require('underscore');
-// var bcrypt = require('bcrypt');
 
 
 module.exports = function(passport) {
@@ -31,7 +30,7 @@ module.exports = function(passport) {
     //   bcrypt.hash(params.password, salt, function(err, hash) {
     //     // Store hash in your password DB.
     //     params.password = hash;
-    //     Object.assign(params);
+        Object.assign(params);
         models.User.create(params, function(err, user) {
           if (err) {
             res.status(400).json({
@@ -43,8 +42,6 @@ module.exports = function(passport) {
             res.redirect('/login')
           }
         });
-    });
-    });
 });
 
 
