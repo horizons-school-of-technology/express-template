@@ -1,6 +1,9 @@
 {
   "name": "bookswap",
   "version": "0.0.0",
+  "engines": {
+    "node": "6.11.0"
+},
   "private": true,
   "scripts": {
     "start": "node app.js"
