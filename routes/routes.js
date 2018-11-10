@@ -74,6 +74,7 @@ router.get('/contactseller', function(req, res, next){
 
 router.post('/removebook/:id', function(req, res, next){
     var bookId = req.params.id;
+    console.log(bookId);
       Book.findByIdAndRemove(bookId)
       .then(() => {
           Book.find({
@@ -89,6 +90,7 @@ router.post('/removebook/:id', function(req, res, next){
 
 
 router.get('/addbook', function(req, res, next) {
+
   res.render('addbook', {
     username: req.user.username,
     depts: depts.depts
@@ -110,14 +112,14 @@ router.post('/addbook', function(req, res, next) {
   })
 });
 
-router.get('/users', function(req, res, next) {
-  User.find(function(err, users) {
-    if (err) return next(err);
-    res.render('users', {
-      users: users
-    });
-  });
-});
+// router.get('/users', function(req, res, next) {
+//   User.find(function(err, users) {
+//     if (err) return next(err);
+//     res.render('users', {
+//       users: users
+//     });
+//   });
+// });
 
 router.post('/contactseller/:id', function(req, res, next) {
   var bookId = req.params.id;
