@@ -1,0 +1,51 @@
+
+//list of departments at bates college
+var depts = [
+  'African American Studies',
+  'American Cultural Studies',
+  'Anthropology',
+  'Art & Visual Culture',
+  'Asian Studies',
+  'Biological Chemistry',
+  'Biology',
+  'Chemistry',
+  'Chinese',
+  'Classical & Medieval Studies',
+  'Dance',
+  'Digital & Computational Studies',
+  'East Asian Studies',
+  'Economics',
+  'Educational Studies',
+  'English',
+  'Environmental Studies',
+  'European Studies',
+  'French & Francophone Studies',
+  'Geology',
+  'German',
+  'Greek',
+  'History',
+  'Interdisciplinary Studies',
+  'Japanese',
+  'Latin',
+  'Latin American Studies',
+  'Mathematics',
+  'Music',
+  'Neuroscience',
+  'Philosophy',
+  'Phyiscal Education',
+  'Physics',
+  'Politics',
+  'Psychology',
+  'Religious Studies',
+  'Rhetoric',
+  'Russian',
+  'Sociology',
+  'Spanish',
+  'Teacher Education',
+  'Theater',
+  "Women & Gender Studies"
+];
+
+module.exports = {
+  depts
+}

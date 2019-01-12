@@ -9,8 +9,12 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var mongoose = require('mongoose');
 var connect = process.env.MONGODB_URI;
+var _ = require('underscore');
 
+
+//what is secret MONGODB_URI???
 var REQUIRED_ENV = "SECRET MONGODB_URI".split(" ");
+//;alsdjf
 
 REQUIRED_ENV.forEach(function(el) {
   if (!process.env[el]){
@@ -23,7 +27,6 @@ REQUIRED_ENV.forEach(function(el) {
 mongoose.connect(connect);
 
 var models = require('./models');
-
 var routes = require('./routes/routes');
 var auth = require('./routes/auth');
 var app = express();
@@ -75,14 +78,9 @@ passport.use(new LocalStrategy(function(username, password, done) {
       return done(null, false, { message: 'Incorrect username.' });
     }
     // if passwords do not match, auth failed
-    if (user.password !== password) {
-      return done(null, false, { message: 'Incorrect password.' });
-    }
-    // auth has has succeeded
-    return done(null, user);
-  });
-}
-));
+    return user
+});
+}));
 
 app.use('/', auth(passport));
 app.use('/', routes);
@@ -106,7 +104,7 @@ if (app.get('env') === 'development') {
       error: err
     });
   });
-}
+};
 
 // production error handler
 // no stacktraces leaked to user
@@ -121,5 +119,4 @@ app.use(function(err, req, res, next) {
 var port = process.env.PORT || 3000;
 app.listen(port);
 console.log('Express started. Listening on port %s', port);
-
 module.exports = app;
