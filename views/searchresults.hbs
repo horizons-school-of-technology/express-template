@@ -1,0 +1,32 @@
+<h1 class="font profile">Results for "{{title}}":</h1>
+
+<h3 class="font">Books</h3>
+<table class="table table-hover">
+  <thead>
+    <td><b>Title</b></td>
+    <td><b>Author</b></td>
+    <td><b>Department</b></td>
+    <td><b>Price</b></td>
+  </thead>
+  <tbody>
+{{#each books}}
+  <tr>
+    <td>{{title}}</td>
+    <td>{{author}}</td>
+    <td>{{department}}</td>
+    <td>${{price}}</td>
+    <td>
+        <form action="/contactseller/{{_id}}" method="POST" >
+            <div class="form-group">
+                <button class="btn btn-success">Contact Seller</button>
+            </div>
+        </form>
+    </td>
+  </tr>
+{{/each}}
+  </tbody>
+</table>
+
+
+<br />
+<a href="/addbook" class="btn btn-primary">Add Book</a>

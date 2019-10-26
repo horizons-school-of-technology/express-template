@@ -1,6 +1,108 @@
-<h3>Home</h3>
-<p>Everyone visiting your site will be able to see this page, no login required</p>
+<h1 class="font profile">BOOKSWAP</h1>
+
+<div>
+  <p class="font">A marketplace for students to buy/sell textbooks at Bates.</p>
+</div>
+<br/>
+  <form action="/searchresults" method="POST" >
+    <div class="col-md-5 col-md-offset-3">
+       <div class="input-group">
+         <input type="text" class="font form-control" placeholder="Search for a title..." name="titleinput">
+         <span class="input-group-btn">
+           <button class="font search btn btn-info" type="submit">Search BookSwap!</button>
+         </span>
+       </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+  </form>
+  <br/>  <br/>  <br/>  <br/>
+
+
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="panel panel-info ">
+        <div class="bates batestext font panel-heading"><h4>For Buyers: </h4></div>
+        <table class="table table-striped">
+        <tbody>
+          <tr>
+            <td>1. Register and login to search for a book</td>
+          </tr>
+          <tr>
+            <td>2. Contact seller</td>
+          </tr>
+          <tr>
+            <td>3. Negotiate and settle on price with seller</td>
+          </tr>
+          <tr>
+            <td>4. Decide where/when to meet seller</td>
+          </tr>
+          <tr>
+            <td>5. Pick up your book!</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="panel panel-info">
+        <div class="bates batestext font panel-heading"><h4>For Sellers: </h4></div>
+        <table class="table table-striped">
+        <tbody>
+          <tr>
+            <td>1. Register and login to put books up</td>
+          </tr>
+          <tr>
+            <td>2. Post book</td>
+          </tr>
+          <tr>
+            <td>3. Wait to be contacted</td>
+          </tr>
+          <tr>
+            <td>4. Meet and sell</td>
+          </tr>
+          <tr>
+            <td>5. Delete book from Bookswap</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
 
 <br />
 
-<span>Visit a page that requires you to be logged in</span> <a href="/protected" class="btn btn-primary">Here</a>
+<!-- Handlebars helper for iteration of only 5 books -->
+
+<h1 class="font profile">TEXTBOOKS AVAILABLE</h1>
+<div class="container-outer">
+    <div class="container-inner">
+        <table class="table table-hover">
+          <thead>
+            <td><b>Title</b></td>
+            <td><b>Author</b></td>
+            <td><b>Department</b></td>
+            <td><b>Price</b></td>
+            <td><b>Owner</b></td>
+          </thead>
+          <tbody>
+        {{#each books}}
+          <tr>
+            <td>{{title}}</td>
+            <td>{{author}}</td>
+            <td>{{department}}</td>
+            <td>${{price}}</td>
+            <td>{{email}}</td>
+            <td>
+                <form action="/contactseller/{{_id}}" method="POST" >
+                    <div class="form-group">
+                        <button class="btn btn-success">Contact Seller</button>
+                    </div>
+                </form>
+            </td>
+          </tr>
+        {{/each}}
+          </tbody>
+        </table>
+    </div>
+</div>
+
+<a href="/books" class=" button btn btn-primary">All Books</a>

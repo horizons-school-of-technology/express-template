@@ -3,3 +3,33 @@ body {
   padding-top: 6.5rem;
   font: 14px "Open Sans", Helvetica, Arial, sans-serif;
 }
+
+.bates {
+    background-color: #3a3a3a !important;
+}
+
+.batestext {
+    color: #fff !important
+}
+
+.button {
+    margin-bottom: 2em !important
+}
+
+.font {
+    font-family: courier !important
+}
+
+.search {
+    color: #fff !important;
+    background-color: #337ab7 !important;
+
+}
+
+.profile {
+    text-decoration: underline !important;
+}
+
+.container-outer { overflow: scroll; width: 100%; height: 300px; }
+
+.container-inner { width: 5000; }
