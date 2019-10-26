@@ -7,8 +7,13 @@ var User = models.User;
 // Users who are not logged in can see these routes
 
 router.get('/', function(req, res, next) {
-  res.render('home');
+  res.render('startscreen');
 });
+
+router.get('/home', function(req, res, next){
+    res.render('home')
+})
+
 
 ///////////////////////////// END OF PUBLIC ROUTES /////////////////////////////
 
@@ -23,8 +28,8 @@ router.use(function(req, res, next){
 //////////////////////////////// PRIVATE ROUTES ////////////////////////////////
 // Only logged in users can see these routes
 
-router.get('/protected', function(req, res, next) {
-  res.render('protectedRoute', {
+router.get('/horizons', function(req, res, next) {
+  res.render('horizons', {
     username: req.user.username,
   });
 });
