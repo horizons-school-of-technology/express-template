@@ -1,0 +1,26 @@
+<h3>Results for {{title}} in {{department}}</h3>
+
+<h3>Books</h3>
+<table class="table table-hover">
+  <thead>
+    <td><b>Title</b></td>
+    <td><b>Author</b></td>
+    <td><b>Department</b></td>
+    <td><b>Price</b></td>
+  </thead>
+  <tbody>
+{{#each books}}
+  <tr>
+    <td>{{title}}</td>
+    <td>{{author}}</td>
+    <td>{{department}}</td>
+    <td>${{price}}.00</td>
+  </tr>
+{{/each}}
+  </tbody>
+</table>
+
+
+<br />
+<a href="/addbook" class="btn btn-primary">Add Book</a>
+<a href="/logout" class="btn btn-primary">Logout</a>

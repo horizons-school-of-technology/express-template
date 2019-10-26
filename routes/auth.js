@@ -17,9 +17,15 @@ module.exports = function(passport) {
         error: "Passwords don't match."
       });
     }
+    if (req.body.email.substr(req.body.email.length-3) !== 'edu') {
+      return res.render('signup', {
+        error: "Please enter a valid .edu email address."
+      })
+    }
     var u = new models.User({
       username: req.body.username,
-      password: req.body.password
+      password: req.body.password,
+      email: req.body.email
     });
     u.save(function(err, user) {
       if (err) {
@@ -39,7 +45,7 @@ module.exports = function(passport) {
 
   // POST Login page
   router.post('/login', passport.authenticate('local',{
-    successRedirect: '/protected',
+    successRedirect: '/profile',
     failureRedirect: '/login'
   }));
 
