@@ -9,7 +9,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var mongoose = require('mongoose');
 var connect = process.env.MONGODB_URI;
-
+var FacebookStrategy = require('passport-facebook');
 var REQUIRED_ENV = "SECRET MONGODB_URI".split(" ");
 
 REQUIRED_ENV.forEach(function(el) {
@@ -19,11 +19,8 @@ REQUIRED_ENV.forEach(function(el) {
   }
 });
 
-
 mongoose.connect(connect);
-
 var models = require('./models');
-
 var routes = require('./routes/routes');
 var auth = require('./routes/auth');
 var app = express();
@@ -49,40 +46,29 @@ app.use(session({
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 
+passport.use(new FacebookStrategy({
+    clientID: process.env.FACEBOOK_APP_ID,
+    clientSecret: process.env.FACEBOOK_APP_SECRET,
+    callbackURL: 'http://localhost:3000/facebook/login/callback'
+},
+function(accessToken, refreshToken, profile, done){
+    done(null, {
+        token: accessToken,
+        name: profile.displayName,
+        id: profile.id
+    });
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
 passport.serializeUser(function(user, done) {
-  done(null, user._id);
+  done(null, user);
 });
 
-passport.deserializeUser(function(id, done) {
-  models.User.findById(id, done);
+passport.deserializeUser(function(user, done) {
+  done(null, user);
 });
-
-// passport strategy
-passport.use(new LocalStrategy(function(username, password, done) {
-  // Find the user with the given username
-  models.User.findOne({ username: username }, function (err, user) {
-    // if there's an error, finish trying to authenticate (auth failed)
-    if (err) {
-      console.error('Error fetching user in LocalStrategy', err);
-      return done(err);
-    }
-    // if no user present, auth failed
-    if (!user) {
-      return done(null, false, { message: 'Incorrect username.' });
-    }
-    // if passwords do not match, auth failed
-    if (user.password !== password) {
-      return done(null, false, { message: 'Incorrect password.' });
-    }
-    // auth has has succeeded
-    return done(null, user);
-  });
-}
-));
 
 app.use('/', auth(passport));
 app.use('/', routes);
